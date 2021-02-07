@@ -1,0 +1,5 @@
+{
+    "variants" : {
+        "" : {"model" : "bloq:block/h_gate_block"}
+    }
+}

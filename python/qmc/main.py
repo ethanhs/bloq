@@ -40,6 +40,8 @@ async def execute(request):
             qc.rx(float(param)* np.pi/32, 0)
         elif gate == 'rz':
             qc.rz(float(param) * np.pi / 32, 0)
+        elif gate == 'h':
+            qc.h(0)
     qc.measure(0,0)
 
     print(qc.qasm())

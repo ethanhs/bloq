@@ -25,7 +25,7 @@ def _run_ionq_simulator(qc):
     else:
         return random.choice(list(result))
 
-class SimulatorBackend(Backend):
+class IonQSimulatorBackend(Backend):
     async def schedule_execution(self, qc):
         result = await to_thread(_run_ionq_simulator, qc)
         return result
@@ -36,7 +36,7 @@ def _run_ionq_qpu(qc):
     result = job.result().get_counts()
     return list(result.keys())[0]
 
-class QPUBackend(Backend):
+class IonQQPUBackend(Backend):
     async def schedule_execution(self, qc):
         result = await to_thread(_run_ionq_qpu, qc)
         return result

@@ -34,6 +34,11 @@ public class BloqMod implements ModInitializer {
   public static final BlockEntityType<XGateBlockEntity> X_GATE_BLOCK_ENTITY;
   private static final Identifier X_GATE_BLOCK_IDENTIFIER = new Identifier(MOD_ID, "x_gate_block");
 
+  public static final Block H_GATE_BLOCK;
+  public static final BlockItem H_GATE_BLOCK_ITEM;
+  public static final BlockEntityType<HGateBlockEntity> H_GATE_BLOCK_ENTITY;
+  private static final Identifier H_GATE_BLOCK_IDENTIFIER = new Identifier(MOD_ID, "h_gate_block");
+
   public static final Block RX_GATE_BLOCK;
   public static final BlockItem RX_GATE_BLOCK_ITEM;
   public static final BlockEntityType<RXGateBlockEntity> RX_GATE_BLOCK_ENTITY;
@@ -61,6 +66,7 @@ public class BloqMod implements ModInitializer {
   private static void GenerateGroupContents(List<ItemStack> stacks) {
     stacks.add(new ItemStack(ITEM_QUBIT));
     stacks.add(new ItemStack(X_GATE_BLOCK_ITEM));
+    stacks.add(new ItemStack(H_GATE_BLOCK_ITEM));
     stacks.add(new ItemStack(RX_GATE_BLOCK_ITEM));
     stacks.add(new ItemStack(RZ_GATE_BLOCK_ITEM));
     stacks.add(new ItemStack(CONTROL_GATE_BLOCK_ITEM));
@@ -83,6 +89,13 @@ public class BloqMod implements ModInitializer {
         new BlockItem(X_GATE_BLOCK, new Item.Settings().group(QUANTUM_GROUP)));
     X_GATE_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, X_GATE_BLOCK_IDENTIFIER,
         BlockEntityType.Builder.create(XGateBlockEntity::new, X_GATE_BLOCK).build(null));
+
+    H_GATE_BLOCK = Registry.register(Registry.BLOCK, H_GATE_BLOCK_IDENTIFIER,
+        new XGateBlock(FabricBlockSettings.copyOf(Blocks.HOPPER)));
+    H_GATE_BLOCK_ITEM = Registry.register(Registry.ITEM, H_GATE_BLOCK_IDENTIFIER,
+        new BlockItem(H_GATE_BLOCK, new Item.Settings().group(QUANTUM_GROUP)));
+    H_GATE_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, H_GATE_BLOCK_IDENTIFIER,
+        BlockEntityType.Builder.create(HGateBlockEntity::new, H_GATE_BLOCK).build(null));
 
     RX_GATE_BLOCK = Registry.register(Registry.BLOCK, RX_GATE_BLOCK_IDENTIFIER,
         new RXGateBlock(FabricBlockSettings.copyOf(Blocks.HOPPER)));
